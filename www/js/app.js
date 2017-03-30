@@ -32,16 +32,62 @@ videoApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvide
       templateUrl: '/407VideoAppRoughHTML',
       controller: 'startPage'
     })
+    .state('takeAVideoPage', {
+
+    })
 
   $urlRouterProvider.otherwise("/");
 })
 
-videoApp.controller('startPage', function(){
+videoApp.controller('startPage', function($scope, $cordovaCapture, $state){
 $scope.on_uploadFile = function(){
 
 }
 
-  $scope.on_takeAVideo = function(){
+$scope.on_takeAVideo = function(){
+  $state.go('takeAVideoPage');
 
+  //Save it as a file (idk what type is easiest)
+  //Use this video file as the template to edit in the rest of app
+  }
+})
+
+videoApp.controller('takeAVideoPage', function($scope, $state, $cordovaCapture){
+  document.addEventListener("deviceready", init, false);
+  function init(){
+
+  }
+
+  //Need to get access to the camera
+  // USED CODE FROM ngcordova.com/docs/plugins/capture/
+  //Take a video, this captures Audio, Image, and Video
+  $scope.captureAudio = function() {
+    var options = { limit: 3, duration: 10 };
+
+    $cordovaCapture.captureAudio(options).then(function(audioData) {
+      // Success! Audio data is here
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
+  }
+
+  $scope.captureImage = function() {
+    var options = { limit: 3 };
+
+    $cordovaCapture.captureImage(options).then(function(imageData) {
+      // Success! Image data is here
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
+  }
+
+  $scope.captureVideo = function() {
+    var options = { limit: 3, duration: 15 };
+
+    $cordovaCapture.captureVideo(options).then(function(videoData) {
+      // Success! Video data is here
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
   }
 })
