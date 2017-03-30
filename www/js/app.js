@@ -1,8 +1,6 @@
-// Ionic Starter App
+// 407 Video App
+// Authors: Roush, Joo, Wu, Crews-hill
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 var videoApp = angular.module('videoApp', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -40,11 +38,14 @@ videoApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvide
 })
 
 videoApp.controller('startPage', function($scope, $cordovaCapture, $state){
+  //This is for the home screen that asks whether you want to use a video file or take a video
+  //It will have two buttons that we need functionality for: UploadFile and TakeAVideo
 $scope.on_uploadFile = function(){
-
+//TODO: Upload File Functionality
 }
 
 $scope.on_takeAVideo = function(){
+  //TODO: Finish TakeAVIDEO functionality , Jackie's Responsibility
   $state.go('takeAVideoPage');
 
   //Save it as a file (idk what type is easiest)
