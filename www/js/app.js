@@ -41,7 +41,8 @@ videoApp.controller('startPage', function($scope, $cordovaCapture, $state){
   //This is for the home screen that asks whether you want to use a video file or take a video
   //It will have two buttons that we need functionality for: UploadFile and TakeAVideo
 $scope.on_uploadFile = function(){
-//TODO: Upload File Functionality
+//
+// TODO: Upload File Functionality
 }
 
 $scope.on_takeAVideo = function(){
@@ -53,42 +54,11 @@ $scope.on_takeAVideo = function(){
   }
 })
 
-videoApp.controller('takeAVideoPage', function($scope, $state, $cordovaCapture){
+videoApp.controller('takeAVideoPage', function($scope, $state, $cordovaCapture) {
   document.addEventListener("deviceready", init, false);
-  function init(){
+  function init() {
 
   }
+}
 
-  //Need to get access to the camera
-  // USED CODE FROM ngcordova.com/docs/plugins/capture/
-  //Take a video, this captures Audio, Image, and Video
-  $scope.captureAudio = function() {
-    var options = { limit: 3, duration: 10 };
 
-    $cordovaCapture.captureAudio(options).then(function(audioData) {
-      // Success! Audio data is here
-    }, function(err) {
-      // An error occurred. Show a message to the user
-    });
-  }
-
-  $scope.captureImage = function() {
-    var options = { limit: 3 };
-
-    $cordovaCapture.captureImage(options).then(function(imageData) {
-      // Success! Image data is here
-    }, function(err) {
-      // An error occurred. Show a message to the user
-    });
-  }
-
-  $scope.captureVideo = function() {
-    var options = { limit: 3, duration: 15 };
-
-    $cordovaCapture.captureVideo(options).then(function(videoData) {
-      // Success! Video data is here
-    }, function(err) {
-      // An error occurred. Show a message to the user
-    });
-  }
-})
