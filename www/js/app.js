@@ -83,3 +83,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+
+/*STUFF TO DO:
+FOR NICK: Look into ionic 2 project.
+If that doesn't work:
+-If it doesn't work, look into cordova plugin: cordova-plugin-video-editor  need to integrate with this
+-If they use that, they also need to access files on the devices (videos): $cordovaFile
+-Don't know for sure, but probably can get thumbnails from video and make those into additional video. (Stop Motion)
+-Also want to trim videos.
+-Crop videos
+-Stitch 2 videos together to make another one.
+(Or any of these.)
+
+-Not sure if these will work or not..  Haven't tried it.
+  -Any other suggestions welcome.
+ */
