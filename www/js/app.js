@@ -1,7 +1,8 @@
 // 407 Video App
 // Authors: Roush, Joo, Wu, Crews-hill
+// Code used and modified from Frank Reding(Neontribe.co.uk)
 
-var videoApp = angular.module('videoApp', ['ionic'])
+var videoApp = angular.module('videoApp', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,7 +28,7 @@ videoApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvide
   $stateProvider
     .state('startPage',{
       url: '/',
-      templateUrl: '/407VideoAppRoughHTML',
+      templateUrl: '/index.html',
       controller: 'startPage'
     })
     .state('takeAVideoPage', {
@@ -37,28 +38,34 @@ videoApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvide
   $urlRouterProvider.otherwise("/");
 })
 
-videoApp.controller('startPage', function($scope, $cordovaCapture, $state){
+videoApp.controller('startPage', function($scope, $cordovaCapture, $state, $cordovaFile, $cordovaMedia){
   //This is for the home screen that asks whether you want to use a video file or take a video
   //It will have two buttons that we need functionality for: UploadFile and TakeAVideo
-$scope.on_uploadFile = function(){
-//
+
+  $cordovaFile.getFreeDiskSpace().then(function (success) {
+    // success in kilobytes
+  }, function (error) {
+    // error
+  });
+
+  $scope.on_uploadFile = function(){
+    console.log("clicked");
 // TODO: Upload File Functionality
+
+    $cordovaFile.checkDir(cordova.file.files, externalDataDirectory)
+      .then(function (success) {
+        // success
+      }, function (error) {
+        // error
+      });
 }
 
 $scope.on_takeAVideo = function(){
-  //TODO: Finish TakeAVIDEO functionality , Jackie's Responsibility
+
   $state.go('takeAVideoPage');
 
   //Save it as a file (idk what type is easiest)
   //Use this video file as the template to edit in the rest of app
   }
 })
-
-videoApp.controller('takeAVideoPage', function($scope, $state, $cordovaCapture) {
-  document.addEventListener("deviceready", init, false);
-  function init() {
-
-  }
-}
-
 
